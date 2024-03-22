@@ -28,6 +28,10 @@ public:
         placa = _placa;
         cantidad_as = cant;
     }
+
+    void mostrarStat(){
+        cout<<placa<<"  "<<name<<"  "<<cantidad_as<<"   "<<cantidad_oc<<"\n";
+    }
 };
 
 Bus buses[100];
@@ -89,11 +93,23 @@ int BuscarBus(string num)
     return -1;
 }
 
+void mostrarBus()
+{
+    limp;
+    for(int x = 0; x < Cantidad_bus; x++){
+        cout<<x+1<<")";buses[x].mostrarStat();
+    }
+    cout<<"\nTotal: "<<Cantidad_bus<<"\n";
+    pausa;
+}
+
 void FunctionBus(int op)
 {
     cin.ignore(); // el mas importante
     string placa, name;
     int encon, asiento;
+
+    mostrarBus();
 
     limp;
     switch (op)
@@ -104,7 +120,7 @@ void FunctionBus(int op)
         {
             getline(cin, placa);
             encon = BuscarBus(placa);
-        } while (placa == "");
+        } while (placa == "" || encon != -1);
         limp;
         do
         {
@@ -115,7 +131,11 @@ void FunctionBus(int op)
         do
         {
             cout << "Ingrese la cantidad de asiento: ";
+            cin >> asiento;
         } while (asiento < 1);
+
+        buses[Cantidad_bus].create_bus(name, placa, asiento);
+        Cantidad_bus++;
 
         break;
 
