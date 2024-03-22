@@ -81,6 +81,8 @@ void Menu_all(int menu)
     }
 }
 
+// Sistema de bus
+
 int BuscarBus(string num)
 {
     for (int x = 0; x < Cantidad_bus; x++)
@@ -101,7 +103,7 @@ void eliminarBus(int num)
         buses[x] = buses[x + 1];
     }
     Cantidad_bus--;
-    cout<<"El bus fue eliminado\n";
+    cout << "El bus fue eliminado\n";
     pausa;
     limp;
 }
@@ -176,9 +178,59 @@ void FunctionBus(int op)
 
         break;
 
-    case 4:
+    default:
+        break;
+    }
+}
 
-        mostrarBus();
+// sistema de cliente
+
+void eliminarCliente(int num)
+{
+    for (int x = num; x < cantidad_cliente; x++)
+    {
+        clientes[x] = clientes[x + 1];
+    }
+    cantidad_cliente--;
+    cout << "El cliente fue eliminado\n";
+    pausa;
+    limp;
+}
+
+void funcionCliente(int num)
+{
+    string name, lastname;
+    int dni;
+
+    cin.ignore();
+
+    switch (num)
+    {
+    case 1:
+        do
+        {
+            cout << "Ingrese el DNI: ";
+            cin >> dni;
+        } while (dni < 0);
+        limp;
+        do
+        {
+            cout << "Ingrese el nombre completo: ";
+            getline(cin, name);
+        } while (name == "");
+        limp;
+        do
+        {
+            cout << "Ingrese el apellido completo: ";
+            getline(cin, lastname);
+        } while (lastname == "");
+        limp;
+        clientes[cantidad_cliente].create_cliente(name, lastname, dni);
+        cantidad_cliente++;
+        limp;
+        cout<<"Se registro correctamente el Cliente";
+        pausa;
+        limp;
 
         break;
 
