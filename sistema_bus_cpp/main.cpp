@@ -29,8 +29,9 @@ public:
         cantidad_as = cant;
     }
 
-    void mostrarStat(){
-        cout<<placa<<"  "<<name<<"  "<<cantidad_as<<"   "<<cantidad_oc<<"\n";
+    void mostrarStat()
+    {
+        cout << placa << "  " << name << "  " << cantidad_as << "   " << cantidad_oc << "\n";
     }
 };
 
@@ -93,13 +94,27 @@ int BuscarBus(string num)
     return -1;
 }
 
+void eliminarBus(int num)
+{
+    for (int x = num; x < Cantidad_bus; x++)
+    {
+        buses[x] = buses[x + 1];
+    }
+    Cantidad_bus--;
+    cout<<"El bus fue eliminado\n";
+    pausa;
+    limp;
+}
+
 void mostrarBus()
 {
     limp;
-    for(int x = 0; x < Cantidad_bus; x++){
-        cout<<x+1<<")";buses[x].mostrarStat();
+    for (int x = 0; x < Cantidad_bus; x++)
+    {
+        cout << x + 1 << ") ";
+        buses[x].mostrarStat();
     }
-    cout<<"\nTotal: "<<Cantidad_bus<<"\n";
+    cout << "\nTotal: " << Cantidad_bus << "\n";
     pausa;
 }
 
@@ -115,9 +130,9 @@ void FunctionBus(int op)
     switch (op)
     {
     case 1:
-        cout << "Ingrese numero de placa: ";
         do
         {
+            cout << "Ingrese numero de placa: ";
             getline(cin, placa);
             encon = BuscarBus(placa);
         } while (placa == "" || encon != -1);
@@ -136,6 +151,34 @@ void FunctionBus(int op)
 
         buses[Cantidad_bus].create_bus(name, placa, asiento);
         Cantidad_bus++;
+
+        break;
+
+    case 3:
+
+        if (Cantidad_bus == 0)
+        {
+
+            cout << "No hay Bus registrado aun\n";
+            pausa;
+        }
+        else
+        {
+            do
+            {
+                cout << "Ingrese numero de placa: ";
+                getline(cin, placa);
+                encon = BuscarBus(placa);
+            } while (placa == "" || encon == -1);
+
+            eliminarBus(encon);
+        }
+
+        break;
+
+    case 4:
+
+        mostrarBus();
 
         break;
 
